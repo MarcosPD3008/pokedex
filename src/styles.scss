@@ -1,0 +1,12 @@
+@import '@fortawesome/fontawesome-free/scss/fontawesome.scss';
+@import 'ngx-toastr/toastr';
+@import './app/styles/colors.scss';
+@import './app/styles/table.scss';
+
+.pointer{
+    cursor: pointer;
+}
+
+html, body {
+    overflow-x: hidden;
+}

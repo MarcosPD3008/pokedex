@@ -1,0 +1,27 @@
+.actions{
+    .child.options{
+        span{
+            color: var(--danger);
+            text-transform: capitalize;
+            cursor: pointer;
+
+            &.active{
+                border-bottom: 2px solid var(--danger);
+                font-weight: bolder;
+            }
+        }
+    }
+}
+
+
+.parent {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); // Creates 4 columns of equal width
+    gap: 30px; // Adjust the gap size as needed
+}
+  
+
+.search-input{
+    border-radius: 50px;
+    margin-left: 15px;
+}

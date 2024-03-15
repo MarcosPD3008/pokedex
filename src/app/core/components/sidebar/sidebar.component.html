@@ -1,0 +1,19 @@
+<div class="sidebar">
+  <div class="header d-flex">
+    <img src="assets/images/pokedex.svg" alt="pokedex icon">
+    <img src="assets/images/pokeapi-lg.svg" alt="pokedex icon">
+  </div>
+
+  <div class="body">
+    <ul class="list-group">
+      @for(item of menuItems; track $index){
+        <li class="list-group-item bg-{{ item.color }} border-0"
+            [routerLink]="item.route">
+          <span>
+            {{ item.name }}
+          </span>
+        </li>
+      }
+    </ul>
+  </div>
+</div>

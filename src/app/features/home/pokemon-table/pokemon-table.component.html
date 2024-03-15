@@ -1,0 +1,45 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Abilities</th>
+      <th>Base Experience</th>
+      <th>Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (pokemon of pokemons; track $index) {
+      <tr>
+        <td>{{ pokemon.id }}</td>
+        <td>{{ pokemon.name }}</td>
+        <td>
+          @for (type of pokemon.types; track $index) {
+            <img class="type-icon" src="assets/images/types/{{ type.type.name }}.svg" 
+                 [alt]="type.type.name"
+                 [title]="type.type.name" 
+                 width="40">  
+          }
+        </td>
+        <td>
+          <ul>
+            @for (ability of pokemon.abilities; track $index) {
+              <li>{{ ability.ability.name }}</li>
+            }
+          </ul>
+        </td>
+        <td>{{ pokemon.base_experience }}</td>
+        <td>
+          <i class="fa-solid fa-circle-info text-primary mx-2 pointer"
+             title="see info">
+          </i>
+
+          <i class="fa fa-heart-circle-check text-danger pointer"
+             title="mark as favorite">
+          </i>
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>

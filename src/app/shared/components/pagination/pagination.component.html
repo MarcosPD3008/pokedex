@@ -1,0 +1,25 @@
+<div class="pagination-container">
+    <ul class="pagination-list">
+        <li class="pagination-list-item"
+            (click)="goToPreviousPage()">
+            <a>
+                <i class="fa fa-angle-double-left" aria-hidden="true"></i>
+            </a>
+        </li>
+
+        <li *ngFor="let page of pagesArr | slice: ((currentPage - 1) < pagesArr.length - 5 ? (currentPage - 1) : 0) :  (currentPage + 4) > pagesArr.length ? pagesArr.length : (currentPage + 4)"
+            (click)="goToPage(page)"
+            [ngClass]="{ 'active' : currentPage == page }">   
+            <a>
+                {{ page }}
+            </a>
+        </li>
+
+        <li class="pagination-list-item"
+            (click)="goToNextPage()">
+            <a>
+                <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>

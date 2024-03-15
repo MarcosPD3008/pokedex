@@ -1,0 +1,21 @@
+<div class="card m-auto mt-2 bg-{{ primaryColor }}">
+  <div class="card-header d-flex justify-content-between">
+    <span class="text-white fw-bolder name">{{ pokemon.name | titlecase }}</span>
+    <span class="text-{{primaryColor}}-dark fw-bolder">#{{ pokemon.id}}</span>
+  </div>
+  
+  <div class="card-body d-flex justify-content-between p-0">
+    <div class="px-2">
+      @for (type of pokemon.types; track $index) {
+        <span class="badge rounded-pill text-bg-{{type.type.name}}">
+          {{ type.type.name |titlecase }}
+        </span><br>
+      }
+    </div>
+    <div class="image-col p-0">
+      <div class="pokemon-sprite p-0">
+        <img [src]="pokemon.sprites.other['official-artwork'].front_default" alt="" width="100">
+      </div>
+    </div>
+  </div>
+</div>

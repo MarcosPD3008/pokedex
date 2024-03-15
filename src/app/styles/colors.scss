@@ -1,0 +1,73 @@
+
+//override bootstrap variables
+$primary: #2a75bb;
+$warning: #ffcb05;
+$danger: #ee1515;
+$light: #f0f0f0;
+
+//types colors
+$normal: #D0D0D0;
+$fire: #F7786b;
+$water: #58ABF6;
+$electric: #FFCE4B;
+$grass: #2CDAB1;
+$ice: #8ED2F9;
+$fighting: #FF922E;
+$poison: #6D31D0;
+$ground: #E2BF65;
+$flying: #CBCBF2;
+$psychic: #FF66B2;
+$bug: #08A47F;
+$rock: #A38C21;
+$ghost: #705693;
+$dragon: #8A76FF;
+$dark: #6E6E6E;
+$steel: #B8B8D0;
+$fairy: #F0B6BC;
+
+$colors : (
+  "primary": $primary,
+  "warning": $warning,
+  "danger": $danger,
+  "light": $light,
+  "normal": $normal,
+  "fire": $fire,
+  "water": $water,
+  "electric": $electric,
+  "grass": $grass,
+  "ice": $ice,
+  "fighting": $fighting,
+  "poison": $poison,
+  "ground": $ground,
+  "flying": $flying,
+  "psychic": $psychic,
+  "bug": $bug,
+  "rock": $rock,
+  "ghost": $ghost,
+  "dragon": $dragon,
+  "dark": $dark,
+  "steel": $steel,
+  "fairy": $fairy
+);  
+
+:root {
+  @each $name, $color in $colors {
+    --#{$name}: #{$color} !important;
+
+    .text-#{$name} {
+      color: #{$color} !important;
+    }
+
+    .text-bg-#{$name} {
+      background-color: darken($color, 10%) !important;
+    }
+
+    .text-#{$name}-dark{
+      color: darken($color, 20%) !important;
+    }
+
+    .bg-#{$name} {
+      background-color: #{$color} !important;
+    }
+  }
+}

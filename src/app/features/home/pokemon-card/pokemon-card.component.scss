@@ -1,0 +1,32 @@
+.card{
+    border-radius: 25px;
+    border: none;
+    overflow: hidden;
+    max-width: 300px;
+
+    .card-header{
+      border:none;
+      background-color: transparent;
+      font-size: larger;
+    }
+    .card-body{
+        .image-col {
+            position: relative;
+            text-align: center; // Center the images
+            width: min-content !important;
+            .pokemon-sprite {
+              background: url('/assets/images/card-pokeball.svg') no-repeat center center;
+              background-size: contain; // Make sure the pokeball image covers the container
+              display: inline-block; // Treat the div as an inline element for centering
+              position: relative;
+              width: 100px; // Match width to sprite image
+              height: 100px; // Set height to maintain aspect ratio
+          
+              img {
+                position: relative;
+                z-index: 1; // Ensure sprite is above the background
+              }
+            }
+        }
+    }
+}
