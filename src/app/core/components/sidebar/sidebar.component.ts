@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
   menuItems: MenuItem[] = [
-    { color: 'primary', name: 'Pokemons', route: '/home' },
+    { color: 'primary', name: 'Pokemons', route: '/pokemon' },
     { color: 'grass', name: 'Moves', route: '/profile' },
     { color: 'electric', name: 'Abilities', route: '/settings' }
   ]

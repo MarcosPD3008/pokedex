@@ -1,0 +1,63 @@
+<div class="backdrop">
+  <div class="content">
+    <div class="card details-card">
+      <div class="card-body">
+        <div class="image-container">
+          <img [src]="pokemon.sprites.other['official-artwork'].front_default" 
+               [alt]="pokemon.name"
+               [width]="300"
+               class="img-fluid m-auto">
+        </div>
+  
+        <div class="title">
+          <span class="name mx-1 text-{{ primaryTypeColor }}">
+            {{ pokemon.name | titlecase }}
+          </span>
+          <div class="badges mt-1">
+            @for (type of pokemon.types; track $index) {
+              <span class="badge rounded-pill mx-1 text-bg-{{type.type.name}}">
+                {{ type.type.name |titlecase }}
+              </span>
+            }
+          </div>
+  
+          <i class="fa-heart pointer text-danger" 
+             [ngClass]="{'fa': isFavoritePokemon, 'fa-regular': !isFavoritePokemon}"
+             (click)="setAsFavorite()">
+
+          </i>
+        </div><hr>
+  
+        <div class="abilities mx-1 my-2" hidden>
+          <span class="fw-bolder">Abilities: </span>
+          @for (ability of pokemon.abilities; track $index) {
+            <span class="badge rounded-pill text-bg-light mx-1">
+              {{ ability.ability.name | titlecase }}
+            </span>
+          }
+        </div>
+  
+        <div class="stats mx-1 my-2">
+          <span class="fw-bolder">Stats: </span>
+  
+          @for (stat of pokemon.stats; track $index) {
+            <div class="row mt-1">
+              <div class="col">
+                <span>{{ stat.stat.name | titlecase }}</span>
+              </div>
+              <div class="col col-2 px-0 mx-0 d-flex justify-content-end">
+                <span class="text-end">{{ stat.base_stat}}</span>
+              </div>
+              <div class="col col-6">
+                <div class="progress mt-1" role="progressbar" [attr.aria-valuenow]="stat.base_stat" aria-valuemin="1" aria-valuemax="255">
+                  <div class="progress-bar bg-{{ primaryTypeColor }}"
+                       [style.width]="getPercentage(stat.base_stat)"></div>
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,69 @@
+<app-loading *ngIf="loading"></app-loading>
+
+<div class="container py-3">
+  
+  <div class="search d-flex justify-content-between">
+    <div class="child d-flex">
+      <img src="assets/images/pokeball.svg" 
+           width="30"
+           class="pointer" >
+      
+      <h4 class="title mx-2">Pokedex</h4>
+    </div>
+    
+    <div class="child d-flex align-items-center">
+      <i class="fa-heart pointer text-danger mx-2"
+        [title]="seeFaviorites ? 'See all pokemons' : 'See favorites'" 
+        [ngClass]="{'fa': seeFaviorites, 'fa-regular': !seeFaviorites}"
+        (click)="searchPokemon()">
+      </i>
+
+      <img src="assets/images/tabla-active.svg" alt="table" 
+             class="mx-2 pointer" 
+             (click)="seeAsTable = true"
+             *ngIf="!seeAsTable">
+    
+      <img src="assets/images/grid-active.svg" alt="cards" 
+             class="pointer"
+             (click)="seeAsTable = false"
+             *ngIf="seeAsTable">
+
+    </div>
+  </div>
+  
+  <div class="mt-3">
+    @if (pokemonResponse) {
+      @if (seeAsTable) {
+        <app-pokemon-table [pokemons]="pokemonResponse.results"
+                           (viewDetails)="selectedPokemon = $event">
+        </app-pokemon-table>
+      }
+      @else {
+        <div class="parent mt-3">
+          @for (pokemon of pokemonResponse.results; track $index) {
+            <div class="child">
+              <app-pokemon-card [pokemon]="pokemon"
+                                (click)="selectPokemon(pokemon)">
+              </app-pokemon-card>
+            </div>
+          }
+        </div>
+      }
+    }  
+  </div>
+
+  @if (!seeFaviorites) {
+    <div class="my-5">
+      <app-pagination [total]="pagination.total"
+                      [pageSize]="pagination.pageSize"
+                      (paginationChange)="onPaginationChange($event)">
+      </app-pagination>
+    </div>
+  }
+</div>
+
+@if(selectedPokemon) {
+  <app-pokemon-details [pokemon]="selectedPokemon"
+                       (close)="selectedPokemon = undefined">
+  </app-pokemon-details>
+}

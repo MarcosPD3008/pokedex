@@ -32,11 +32,8 @@
         <td>{{ pokemon.base_experience }}</td>
         <td>
           <i class="fa-solid fa-circle-info text-primary mx-2 pointer"
+             (click)="viewPokemonDetails(pokemon)"
              title="see info">
-          </i>
-
-          <i class="fa fa-heart-circle-check text-danger pointer"
-             title="mark as favorite">
           </i>
         </td>
       </tr>

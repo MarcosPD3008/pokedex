@@ -1,0 +1,49 @@
+.content{
+    
+    .card{
+        width: 30%;
+        height: 100vh !important;
+        margin-left: auto;
+
+        .card-body{
+            .image-container{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-bottom: 20px;
+            }
+
+            .title{
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+
+                .name{
+                    font-size: 1.8rem;
+                    font-weight: bold;
+                    text-align: center;
+                }
+
+                .fa-heart{
+                    margin-left: auto;
+                    font-size: 1.5rem;
+                    margin-top: 5px;
+                }
+            }
+
+            .abilities{
+                margin-top: 10px;
+                ul li{
+                    list-style-type: none;
+                    margin-bottom: 5px;
+                }
+            }
+        }
+    }
+}
+
+.text-end{
+    text-align: end;
+    margin-left: auto;
+    right: 0;
+}

@@ -1,19 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { PokemonService } from '../../core/services/pokemon.service';
-import { PokemonResponse } from '../../core/models/pokemon.model';
+import { Pokemon, PokemonResponse } from '../../core/models/pokemon.model';
 import { HttpClient } from '@angular/common/http';
 import { paginationChangeEvent } from '../../shared/components/pagination/pagination.component';
 
 @Component({
   selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  templateUrl: './pokemon.component.html',
+  styleUrls: ['./pokemon.component.scss']
 })
-export class HomeComponent implements OnInit {
-  pokemonResponse!:PokemonResponse
+export class PokemonComponent implements OnInit {
+  pokemonResponse!:PokemonResponse;
+  selectedPokemon?:Pokemon;
   seeAsTable:boolean = false;
   showAll:boolean = true;
   loading:boolean = false;
+  seeFaviorites:boolean = true;
 
   pagination: paginationChangeEvent = {
     total: 0,
@@ -24,7 +26,7 @@ export class HomeComponent implements OnInit {
   constructor(private pokemonService:PokemonService) { }
 
   ngOnInit() {
-    this.getPokemons();
+    this.searchPokemon();
   }
 
   getPokemons() {
@@ -38,7 +40,6 @@ export class HomeComponent implements OnInit {
         this.pokemonResponse.results.sort((a, b) => a.id - b.id);
         this.pagination.total = response.count;
         this.loading = false;
-        console.log(response);
       },
       error: (error) => {
         console.error(error);
@@ -46,8 +47,44 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  getFavoritePokemons() {
+    this.loading = true;
+    this.pokemonService.getFavorites()
+    .subscribe({
+      next: (pokemons) => {
+        this.pokemonResponse = {
+          count: pokemons.length,
+          next: null,
+          previous: null,
+          results: pokemons.sort((a, b) => a.id - b.id)
+        }
+
+        
+        this.loading = false;
+      },
+      error: (error) => {
+        console.error(error);
+      }
+    });
+  }
+
+  searchPokemon(){
+    this.seeFaviorites = !this.seeFaviorites;
+
+    if(this.seeFaviorites) {
+      this.getFavoritePokemons();
+    }
+    else {
+      this.getPokemons();
+    }
+  }
+
   onPaginationChange(event: paginationChangeEvent) {
     this.pagination = event;
     this.getPokemons();
+  }
+
+  selectPokemon(pokemon:Pokemon) {
+    this.selectedPokemon = pokemon;
   }
 }
