@@ -4,6 +4,7 @@ import { Pokemon, PokemonResponse } from '../../core/models/pokemon.model';
 import { HttpClient } from '@angular/common/http';
 import { paginationChangeEvent } from '../../shared/components/pagination/pagination.component';
 import { SidebarService } from '../../core/services/sidebar.service';
+import { scrollToTop } from '../../shared/helpers/scrollToTop';
 
 @Component({
   selector: 'app-home',
@@ -48,6 +49,9 @@ export class PokemonComponent implements OnInit {
         this.pokemonResponse.results.sort((a, b) => a.id - b.id);
         this.pagination.total = response.count;
         this.loading = false;
+
+        if(this.isMobile)
+          scrollToTop();
       },
       error: (error) => {
         console.error(error);

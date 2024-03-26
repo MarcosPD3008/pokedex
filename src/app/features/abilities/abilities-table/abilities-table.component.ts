@@ -3,6 +3,7 @@ import { AbilitiesService } from '../../../core/services/abilities.service';
 import { paginationChangeEvent } from '../../../shared/components/pagination/pagination.component';
 import { AbilityEffect, EffectChange } from '../../../core/models/abilities.models';
 import { SidebarService } from '../../../core/services/sidebar.service';
+import { scrollToTop } from '../../../shared/helpers/scrollToTop';
 
 @Component({
   selector: 'app-abilities-table',
@@ -42,6 +43,9 @@ export class AbilitiesTableComponent implements OnInit {
         this.abilities = response.results;
         this.pagination.total = response.count;
         this.loading = false;
+
+        if(this.isMobile)
+          scrollToTop();
       },
       error: (error) => {
         console.error(error);

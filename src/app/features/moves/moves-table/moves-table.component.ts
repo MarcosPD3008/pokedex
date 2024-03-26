@@ -3,6 +3,7 @@ import { MovesService } from '../../../core/services/moves.service';
 import { Move } from '../../../core/models/moves.models';
 import { paginationChangeEvent } from '../../../shared/components/pagination/pagination.component';
 import { SidebarService } from '../../../core/services/sidebar.service';
+import { scrollToTop } from '../../../shared/helpers/scrollToTop';
 
 @Component({
   selector: 'app-moves-table',
@@ -38,6 +39,9 @@ export class MovesTableComponent implements OnInit {
         this.moves = response.results;
         this.pagination.total = response.count;
         this.loading = false;
+
+        if(this.isMobile)
+          scrollToTop();
       },
       error: (error:any) => {
         console.error(error);
