@@ -1,10 +1,12 @@
 .content{
-    
     .card{
         width: 30%;
         height: 100vh !important;
         margin-left: auto;
 
+        @media (max-width: 768px) {
+            width: 100%;
+        }
         .card-body{
             .image-container{
                 display: flex;

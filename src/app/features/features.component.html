@@ -1,8 +1,8 @@
 <div class="row">
-  <div class="col col-4">
+  <div class="col col-4" *ngIf="!(hideSidebar && isMobile)"> 
     <app-sidebar></app-sidebar>
   </div>
-  <div class="col">
+  <div class="col" [ngClass]="{'content': !(hideSidebar && isMobile) }">
     <router-outlet></router-outlet>
   </div>
 </div>

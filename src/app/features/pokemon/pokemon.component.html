@@ -3,9 +3,14 @@
 <div class="container py-3">
   <div class="search d-flex justify-content-between">
     <div class="child d-flex">
-      <img src="assets/images/pokeball.svg" 
-           width="30"
-           class="pointer" >
+      @if(!isMobile){
+        <img src="assets/images/pokeball.svg" 
+             width="30"
+             class="pointer">
+      }
+      @else {
+        <i class="fa fa-bars" aria-hidden="true" (click)="toggleSidebar()"></i>
+      }
       
       <h4 class="title mx-2">Pokedex</h4>
     </div>

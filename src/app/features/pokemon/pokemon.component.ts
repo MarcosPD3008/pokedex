@@ -3,6 +3,7 @@ import { PokemonService } from '../../core/services/pokemon.service';
 import { Pokemon, PokemonResponse } from '../../core/models/pokemon.model';
 import { HttpClient } from '@angular/common/http';
 import { paginationChangeEvent } from '../../shared/components/pagination/pagination.component';
+import { SidebarService } from '../../core/services/sidebar.service';
 
 @Component({
   selector: 'app-home',
@@ -16,6 +17,7 @@ export class PokemonComponent implements OnInit {
   showAll:boolean = true;
   loading:boolean = false;
   seeFaviorites:boolean = true;
+  isMobile:boolean = false;
 
   pagination: paginationChangeEvent = {
     total: 0,
@@ -23,10 +25,16 @@ export class PokemonComponent implements OnInit {
     pageSize: 16
   }
 
-  constructor(private pokemonService:PokemonService) { }
+  constructor(private pokemonService:PokemonService,
+              private sidebarService: SidebarService) { }
 
   ngOnInit() {
     this.searchPokemon();
+    this.sidebarService.mobile$.subscribe({
+      next: (isMobile) => {
+        this.isMobile = isMobile;
+      }
+    })
   }
 
   getPokemons() {
@@ -86,5 +94,9 @@ export class PokemonComponent implements OnInit {
 
   selectPokemon(pokemon:Pokemon) {
     this.selectedPokemon = pokemon;
+  }
+
+  toggleSidebar() {
+    this.sidebarService.toggle();
   }
 }

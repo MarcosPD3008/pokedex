@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbilitiesService } from '../../../core/services/abilities.service';
 import { paginationChangeEvent } from '../../../shared/components/pagination/pagination.component';
 import { AbilityEffect, EffectChange } from '../../../core/models/abilities.models';
+import { SidebarService } from '../../../core/services/sidebar.service';
 
 @Component({
   selector: 'app-abilities-table',
@@ -10,6 +11,7 @@ import { AbilityEffect, EffectChange } from '../../../core/models/abilities.mode
 })
 export class AbilitiesTableComponent implements OnInit {
   loading: boolean = false;
+  isMobile: boolean = false;
   abilities: AbilityEffect[] = [];
 
   pagination:paginationChangeEvent = {
@@ -18,10 +20,17 @@ export class AbilitiesTableComponent implements OnInit {
     pageSize: 8
   }  
   
-  constructor(private abilitiesService:AbilitiesService) { }
+  constructor(private abilitiesService:AbilitiesService,
+              private sidebarService:SidebarService) { }
 
   ngOnInit() {
     this.getAbilities();
+
+    this.sidebarService.mobile$.subscribe({
+      next: (isMobile) => {
+        this.isMobile = isMobile;
+      }
+    });
   }
 
   getAbilities() {
@@ -44,5 +53,9 @@ export class AbilitiesTableComponent implements OnInit {
   onPaginationChange(event:paginationChangeEvent) {
     this.pagination = event;
     this.getAbilities();
+  }
+
+  toggleSidebar(){
+    this.sidebarService.toggle();
   }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MovesService } from '../../../core/services/moves.service';
 import { Move } from '../../../core/models/moves.models';
 import { paginationChangeEvent } from '../../../shared/components/pagination/pagination.component';
+import { SidebarService } from '../../../core/services/sidebar.service';
 
 @Component({
   selector: 'app-moves-table',
@@ -10,6 +11,7 @@ import { paginationChangeEvent } from '../../../shared/components/pagination/pag
 })
 export class MovesTableComponent implements OnInit {
   loading: boolean = false;
+  isMobile: boolean = false;
   moves:Move[] = [];
 
   pagination:paginationChangeEvent = {
@@ -17,10 +19,15 @@ export class MovesTableComponent implements OnInit {
     currentPage: 1,
     pageSize: 8
   }
-  constructor(private movesService:MovesService) { }
+  constructor(private movesService:MovesService,
+              private sidebarService:SidebarService) { }
 
   ngOnInit() {
     this.getMoves();
+
+    this.sidebarService.mobile$.subscribe(isMobile => {
+      this.isMobile = isMobile;
+    });
   }
 
   getMoves() {
@@ -42,5 +49,9 @@ export class MovesTableComponent implements OnInit {
   onPaginationChange(event:paginationChangeEvent) {
     this.pagination = event;
     this.getMoves();
+  }
+
+  toggleSidebar(): void {
+    this.sidebarService.toggle();
   }
 }

@@ -1,0 +1,17 @@
+{
+  "hosting": {
+    "public": "dist/pokedex/browser",
+    "site": "pokedex-mpd",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}

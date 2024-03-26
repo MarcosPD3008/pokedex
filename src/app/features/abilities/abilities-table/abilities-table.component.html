@@ -3,31 +3,38 @@
 <div class="container py-3">
   <div class="search d-flex justify-content-between">
     <div class="child d-flex">
-      <img src="assets/images/pokeball.svg" 
-           width="30"
-           class="pointer" >
+      @if(!isMobile){
+        <img src="assets/images/pokeball.svg" 
+             width="30"
+             class="pointer">
+      }
+      @else {
+        <i class="fa fa-bars" aria-hidden="true" (click)="toggleSidebar()"></i>
+      }
       
       <h4 class="title mx-2">Ability list</h4>
     </div>
   </div>
 
   <div class="mt-3">
-    <table class="table">
-      <thead>
-        <tr>
-          <th class="w-25">Ability</th>
-          <th class="w-25">Learned by</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <tr *ngFor="let ability of abilities">
-          <td>{{ ability.name | titlecase }}</td>
-          <td>{{ ability.pokemon.length }} pokemon(s)</td>
-          <td class="description">{{ ability.effect_entries[1].short_effect }}</td>
-        </tr>
-    </table>
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="w-25">Ability</th>
+            <th class="w-25">Learned by</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+  
+        <tbody>
+          <tr *ngFor="let ability of abilities">
+            <td>{{ ability.name | titlecase }}</td>
+            <td>{{ ability.pokemon.length }} pokemon(s)</td>
+            <td class="description">{{ ability.effect_entries[1].short_effect }}</td>
+          </tr>
+      </table>
+    </div>
   </div>
 
   <div class="my-5">
