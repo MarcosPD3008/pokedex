@@ -1,5 +1,5 @@
 .table {
-    width: 100%;
+    width: 100% !important;
     border-collapse: separate;
     border-spacing: 0 15px;
     margin: 0 !important;
@@ -37,6 +37,8 @@
           text-align: center;
           padding: 15px;
           vertical-align: middle;
+          text-wrap: wrap;
+          
 
           ul{
             list-style: none;

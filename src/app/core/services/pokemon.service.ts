@@ -8,7 +8,7 @@ import { Entities } from '../enums/entity';
 export class PokemonService {
     baseUrl:string;
     constructor(private http:HttpClient) {
-        this.baseUrl = `${environment.baseUrl}pokemon/`;
+      this.baseUrl = `${environment.baseUrl}pokemon/`;
     }
 
   getPokemons(pageNumber:number = 1, pageSize:number = 12) {

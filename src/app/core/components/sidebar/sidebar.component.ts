@@ -5,17 +5,12 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss']
 })
-export class SidebarComponent implements OnInit {
+export class SidebarComponent {
   menuItems: MenuItem[] = [
-    { color: 'primary', name: 'Pokemons', route: '/pokemon' },
-    { color: 'grass', name: 'Moves', route: '/profile' },
-    { color: 'electric', name: 'Abilities', route: '/settings' }
-  ]
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+    { color: 'primary', name: 'Pokemons', route: '/pokeapi/pokemon' },
+    { color: 'grass', name: 'Moves', route: '/pokeapi/moves' },
+    { color: 'electric', name: 'Abilities', route: '/pokeapi/abilities' }
+  ];
 }
 
 interface MenuItem {
