@@ -1,27 +1,92 @@
-# Pokedex
+# <Project Pokedex>
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.1.1.
+<Brief Page to see pokemons>
 
-## Development server
+## Table of Contents
+- [Preview](#preview)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+- [Libraries Used](#libraries-used)
+- [Running the App](#running-the-app)
+  - [Development Server](#development-server)
+  - [Build](#build)
+  - [Docker](#docker)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## Code scaffolding
+## Preview
+<div style="display: flex; justify-content: space-between"> 
+  <img width="48%" src="./src/assets/images/readme/home.png"> 
+  <img width="48%" src="./src/assets/images/readme/details.png"> 
+</div>
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Getting Started
+This section will guide you through the process of setting up the Angular Pokédex app on your local environment. By following these steps, you'll have a running instance of the app, which utilizes the public PokeAPI to fetch and display Pokémon data.
 
-## Build
+### Prerequisites
+- [Node.js](https://nodejs.org/) (v18.13 or higher)
+- [npm](https://www.npmjs.com/) (include)
+- [Angular CLI](https://angular.io/cli) (v17.0.0 or higher)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+You can check the versions of Node.js and npm by running the following commands in your terminal:
 
-## Running unit tests
+```bash
+node --version
+npm --version
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Installation
+1. Clone the repository
+```bash
+git clone https://github.com/MarcosPD3008/pokedex
+```
 
-## Running end-to-end tests
+2. Navigate to the project directory
+```bash
+cd pokedex
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+3. Install the project dependencies
+```bash
+npm install
+```
 
-## Further help
+## Libraries Used
+- [Bootstrap](https://getbootstrap.com/)
+- [Font Awesome](https://fontawesome.com/)
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## Running the App
+### Development Server
+To run the app on a development server, execute the following command:
+```bash
+ng serve --open
+```
+
+### Build
+To build the app for production, execute the following command:
+```bash
+ng build
+```
+
+### Docker
+
+Using Docker to run the Angular Pokédex app provides a seamless way to ensure that the app runs the same way in any environment. Docker containers package up the code and all its dependencies so the application runs quickly and reliably from one computing environment to another. Below are the steps to build and run your app inside a Docker container.
+
+#### Building the Docker Image
+
+Before running the app in a Docker container, you need to build a Docker image. A Docker image is a lightweight, standalone, executable package that includes everything needed to run a piece of software, including the code, a runtime, libraries, environment variables, and config files.
+
+To build the Docker image for the Pokédex app, execute the following command in your terminal:
+
+```bash
+docker build -t pokedex .
+```
+
+#### Running the Docker Container
+
+After building the Docker image, you can run the Pokédex app inside a Docker container. To do this, execute the following command:
+
+```bash
+docker run -d -p 8080:80 pokedex
+```
